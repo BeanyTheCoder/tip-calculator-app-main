@@ -1,14 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
 $strong-cyan: hsl(172, 67%, 45%);
+$strong-cyan-transparent: hsla(172, 67%, 45%, 35%);
 $very-dark-cyan: hsl(183, 100%, 15%);
+$very-dark-cyan-transparent: hsla(183, 100%, 15%, 35%);
 $dark-grayish-cyan: hsl(186, 14%, 43%);
 $grayish-cyan: hsl(184, 14%, 56%);
 $light-grayish-cyan: hsl(185, 41%, 84%);
 $very-light-grayish-cyan: hsl(189, 41%, 97%);
 $white: hsl(0, 0%, 100%);
 
-@mixin flex($flex-direction: row, $justify-content: center, $align-items: center, $gap: unset) {
+@mixin flex(
+  $flex-direction: row,
+  $justify-content: center,
+  $align-items: center,
+  $gap: unset
+) {
   display: flex;
   flex-direction: $flex-direction;
   justify-content: $justify-content;

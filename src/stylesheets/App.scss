@@ -9,10 +9,14 @@
 }
 
 #app {
-  @include flex($flex-direction: column, $gap: clamp(2em, 6vmax, 4em));
+  @include flex($flex-direction: column, $gap: unset);
   background-color: $light-grayish-cyan;
   height: 100vh;
   font-size: 1.7vmin;
+
+  @media screen and (width < 800px) {
+    font-size: 1rem;
+  }
 }
 
 input {
