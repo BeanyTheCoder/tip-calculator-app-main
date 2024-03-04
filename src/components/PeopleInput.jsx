@@ -11,11 +11,12 @@ export default function PeopleInput({
   }
   return (
     <div className="card__calculator__people">
-      <label htmlFor="numOfPeople">Number Of People</label>
-      <div className="card__calculator__people__input">
+      <label htmlFor="numOfPeople" className="--label">Number Of People</label>
+      <div className="card__calculator__people__input --input">
         <input
           type="number"
           name="numOfPeople"
+          placeholder="0"
           ref={inputRef}
           onChange={handlePeopleChange}
         />
@@ -26,7 +27,7 @@ export default function PeopleInput({
           />
         </svg>
       </div>
-      <p>{numOfPeople}</p>
+      {/* <p>{numOfPeople}</p> */}
     </div>
   );
 }

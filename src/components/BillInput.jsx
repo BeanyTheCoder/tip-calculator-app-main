@@ -22,9 +22,15 @@ export default function BillInput({ state: bill, setState: setBill }) {
 
   return (
     <div className="card__calculator__bill">
-      <label htmlFor="bill">Bill</label>
-      <div className="card__calculator__bill__input">
-        <input type="text" name="bill" ref={inputRef} onChange={handleBillChange} />
+      <label htmlFor="bill" className="--label">Bill</label>
+      <div className="card__calculator__bill__input --input">
+        <input
+          type="text"
+          name="bill"
+          placeholder="0"
+          ref={inputRef}
+          onChange={handleBillChange}
+        />
         <svg xmlns="http://www.w3.org/2000/svg" width="11" height="17">
           <path
             fill="#9EBBBD"
@@ -32,7 +38,7 @@ export default function BillInput({ state: bill, setState: setBill }) {
           />
         </svg>
       </div>
-      <p>{bill}</p>
+      {/* <p>{bill}</p> */}
     </div>
   );
 }

@@ -5,7 +5,7 @@ export default function TotalDisplay({
   state: { bill, numOfPeople, tipSelection },
 }) {
   function computeTotalPerPerson(bill, numOfPeople, tipSelection) {
-    if ((!bill || !numOfPeople || !tipSelection)) {
+    if (!bill || !numOfPeople) {
       return 0;
     }
 

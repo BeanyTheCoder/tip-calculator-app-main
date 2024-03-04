@@ -3,51 +3,58 @@
   background-color: $white;
   padding: 2em;
   border-radius: 2em;
-  width: clamp(280px, 80vw, 800px);
+  // width: clamp(17.5em, 80vw, 50em);
+  width: clamp(280px, 60vw, 900px);
 
   &__calculator {
     flex-basis: 50%;
+    padding: 0.75em;
+
+    .--input {
+      @include flex(
+        $flex-direction: row-reverse,
+        $justify-content: space-between
+      );
+      border-radius: 0.5em;
+      padding: 0.5em 1em;
+      background-color: $very-light-grayish-cyan;
+
+      input {
+        -moz-appearance: textfield;
+        background-color: transparent;
+        text-align: right;
+        color: $very-dark-cyan;
+
+        &::placeholder {
+          color: $grayish-cyan;
+        }
+
+        &::-webkit-inner-spin-button,
+        &::-webkit-outer-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+      }
+
+      svg {
+      }
+    }
+
+    .--label {
+      color: $dark-grayish-cyan;
+      display: inline-block;
+      margin-bottom: 0.5em;
+    }
 
     &__bill {
       margin-bottom: 2.5em;
-      label {
-        color: $very-dark-cyan;
-        display: inline-block;
-        margin-bottom: 0.5em;
-      }
-
-      &__input {
-        @include flex(
-          $flex-direction: row-reverse,
-          $justify-content: space-between
-        );
-        border-radius: 0.5em;
-        padding: 0.5em 1em;
-        background-color: $very-light-grayish-cyan;
-
-        input {
-          -moz-appearance: textfield;
-          background-color: transparent;
-          text-align: right;
-          color: $grayish-cyan;
-
-          &::-webkit-inner-spin-button,
-          &::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-          }
-        }
-
-        svg {
-        }
-      }
     }
 
     &__select {
       margin-bottom: 2.5em;
 
       p {
-        color: $very-dark-cyan;
+        color: $dark-grayish-cyan;
         margin-bottom: 1em;
       }
 
@@ -62,10 +69,11 @@
           @include flex;
           padding: 0.25em 1em;
           border-radius: 0.25em;
-          font-size: 24px;
+          font-size: 1.5em;
           background-color: $very-dark-cyan;
           color: $very-light-grayish-cyan;
           cursor: pointer;
+          min-width: calc(100% / 3);
 
           &.--active {
             background-color: $strong-cyan;
@@ -73,7 +81,7 @@
 
           &:last-child {
             background-color: $very-light-grayish-cyan;
-            color: $very-dark-cyan;
+            color: $dark-grayish-cyan;
 
             input {
               background: transparent;
@@ -84,45 +92,15 @@
     }
 
     &__people {
-      label {
-        color: $very-dark-cyan;
-        display: inline-block;
-        margin-bottom: 0.5em;
-      }
-
-      &__input {
-        @include flex(
-          $flex-direction: row-reverse,
-          $justify-content: space-between
-        );
-        border-radius: 0.5em;
-        padding: 0.5em 1em;
-        background-color: $very-light-grayish-cyan;
-
-        input {
-          -moz-appearance: textfield;
-          background-color: transparent;
-          text-align: right;
-          color: $grayish-cyan;
-
-          &::-webkit-inner-spin-button,
-          &::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-          }
-        }
-
-        svg {
-        }
-      }
     }
   }
 
   &__display {
     padding: 2em;
-    border-radius: 1.5em;
+    border-radius: 1em;
     background-color: $very-dark-cyan;
     flex-basis: 50%;
+
     @include flex(
       $flex-direction: column,
       $justify-content: space-between,
@@ -146,14 +124,14 @@
 
         &__number {
           p {
-            font-size: 3rem;
+            font-size: 3em;
             color: $strong-cyan;
           }
         }
       }
     }
 
-    button {
+    &__reset {
       background-color: $strong-cyan;
       color: $very-dark-cyan;
       padding: 0.5em 0.75em;

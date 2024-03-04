@@ -1,4 +1,4 @@
-export default function roundValue(value, dp = 3) {
+export default function roundValue(value, dp = 2) {
   if (typeof value !== "number") {
     return;
   }
