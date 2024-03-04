@@ -1,0 +1,165 @@
+.card {
+  @include flex($align-items: stretch, $gap: 2em);
+  background-color: $white;
+  padding: 2em;
+  border-radius: 2em;
+  width: clamp(280px, 80vw, 800px);
+
+  &__calculator {
+    flex-basis: 50%;
+
+    &__bill {
+      margin-bottom: 2.5em;
+      label {
+        color: $very-dark-cyan;
+        display: inline-block;
+        margin-bottom: 0.5em;
+      }
+
+      &__input {
+        @include flex(
+          $flex-direction: row-reverse,
+          $justify-content: space-between
+        );
+        border-radius: 0.5em;
+        padding: 0.5em 1em;
+        background-color: $very-light-grayish-cyan;
+
+        input {
+          -moz-appearance: textfield;
+          background-color: transparent;
+          text-align: right;
+          color: $grayish-cyan;
+
+          &::-webkit-inner-spin-button,
+          &::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+          }
+        }
+
+        svg {
+        }
+      }
+    }
+
+    &__select {
+      margin-bottom: 2.5em;
+
+      p {
+        color: $very-dark-cyan;
+        margin-bottom: 1em;
+      }
+
+      &__container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        gap: 1em;
+        color: $white;
+
+        &__item {
+          @include flex;
+          padding: 0.25em 1em;
+          border-radius: 0.25em;
+          font-size: 24px;
+          background-color: $very-dark-cyan;
+          color: $very-light-grayish-cyan;
+          cursor: pointer;
+
+          &.--active {
+            background-color: $strong-cyan;
+          }
+
+          &:last-child {
+            background-color: $very-light-grayish-cyan;
+            color: $very-dark-cyan;
+
+            input {
+              background: transparent;
+            }
+          }
+        }
+      }
+    }
+
+    &__people {
+      label {
+        color: $very-dark-cyan;
+        display: inline-block;
+        margin-bottom: 0.5em;
+      }
+
+      &__input {
+        @include flex(
+          $flex-direction: row-reverse,
+          $justify-content: space-between
+        );
+        border-radius: 0.5em;
+        padding: 0.5em 1em;
+        background-color: $very-light-grayish-cyan;
+
+        input {
+          -moz-appearance: textfield;
+          background-color: transparent;
+          text-align: right;
+          color: $grayish-cyan;
+
+          &::-webkit-inner-spin-button,
+          &::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+          }
+        }
+
+        svg {
+        }
+      }
+    }
+  }
+
+  &__display {
+    padding: 2em;
+    border-radius: 1.5em;
+    background-color: $very-dark-cyan;
+    flex-basis: 50%;
+    @include flex(
+      $flex-direction: column,
+      $justify-content: space-between,
+      $align-items: stretch
+    );
+
+    &__container {
+      &__item {
+        @include flex($justify-content: space-between);
+        padding: 1em;
+
+        &__text {
+          p {
+            color: $white;
+          }
+
+          span {
+            color: $dark-grayish-cyan;
+          }
+        }
+
+        &__number {
+          p {
+            font-size: 3rem;
+            color: $strong-cyan;
+          }
+        }
+      }
+    }
+
+    button {
+      background-color: $strong-cyan;
+      color: $very-dark-cyan;
+      padding: 0.5em 0.75em;
+      text-transform: uppercase;
+      font-size: 1.25em;
+      border-radius: 0.25em;
+    }
+  }
+}
