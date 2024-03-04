@@ -3,8 +3,8 @@
   background-color: $white;
   padding: 2em;
   border-radius: 2em;
-  // width: clamp(17.5em, 80vw, 50em);
-  width: clamp(280px, 60vw, 900px);
+  width: clamp(17.5em, 80vw, 50em);
+  // width: clamp(280px, 60vw, 900px);
 
   &__calculator {
     flex-basis: 50%;
@@ -140,4 +140,8 @@
       border-radius: 0.25em;
     }
   }
+
+  // @media screen and (width < 800px) {
+  //   flex-direction: column-reverse;
+  // }
 }

@@ -9,10 +9,10 @@
 }
 
 #app {
-  @include flex($flex-direction: column, $gap: 4vmax);
+  @include flex($flex-direction: column, $gap: clamp(2em, 6vmax, 4em));
   background-color: $light-grayish-cyan;
   height: 100vh;
-  font-size: 1rem;
+  font-size: 1.7vmin;
 }
 
 input {
