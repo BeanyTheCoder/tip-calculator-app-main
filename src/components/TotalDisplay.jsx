@@ -22,7 +22,8 @@ export default function TotalDisplay({
         <span>/ person</span>
       </div>
       <div className="card__display__container__item__number">
-        <p>{"$" + computeTotalPerPerson(bill, numOfPeople, tipSelection)}</p>
+        {/* <p>{"$" + computeTotalPerPerson(bill, numOfPeople, tipSelection)}</p> */}
+        <p>$0.00</p>
       </div>
     </div>
   );

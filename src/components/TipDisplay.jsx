@@ -21,7 +21,8 @@ export default function TipDisplay({
         <span>/ person</span>
       </div>
       <div className="card__display__container__item__number">
-        <p>{"$" + computeTipPerPerson(bill, numOfPeople, tipSelection)}</p>
+        {/* <p>{"$" + computeTipPerPerson(bill, numOfPeople, tipSelection)}</p> */}
+        <p>$0.00</p>
       </div>
     </div>
   );

@@ -3,7 +3,7 @@
   background-color: $white;
   padding: 2em;
   border-radius: 2em;
-  width: clamp(17.5em, 80vw, 50em);
+  width: clamp(17.5em, 80vw, 55em);
   // width: clamp(280px, 60vw, 900px);
 
   &__calculator {
@@ -18,10 +18,19 @@
       border-radius: 0.5em;
       padding: 0.5em 1em;
       background-color: $very-light-grayish-cyan;
+      border: 2px solid $very-light-grayish-cyan;
+      transition: 200ms;
+      cursor: pointer;
+
+      &:hover,
+      &:has(input:focus) {
+        border: 2px solid $strong-cyan-light;
+      }
 
       input {
         -moz-appearance: textfield;
         background-color: transparent;
+        cursor: pointer;
         text-align: right;
         color: $very-dark-cyan;
 
@@ -47,12 +56,10 @@
     }
 
     &__bill {
-      margin-bottom: 2.5em;
+      margin-bottom: 2.75em;
     }
 
     &__select {
-      margin-bottom: 2.5em;
-
       p {
         color: $dark-grayish-cyan;
         margin-bottom: 1em;
@@ -75,6 +82,11 @@
           cursor: pointer;
           min-width: calc(100% / 3);
 
+          &:hover,
+          &:focus {
+            background-color: $strong-cyan-light;
+          }
+
           &.--active {
             background-color: $strong-cyan;
             color: $very-dark-cyan;
@@ -93,11 +105,12 @@
     }
 
     &__people {
+      margin-top: 2.75em;
     }
   }
 
   &__display {
-    padding: 2em;
+    padding: 2.5em;
     border-radius: 1em;
     background-color: $very-dark-cyan;
     flex-basis: 50%;
@@ -143,6 +156,10 @@
       &.--active {
         background-color: $strong-cyan;
         color: $very-dark-cyan;
+
+        &:hover {
+          background-color: $strong-cyan-light;
+        }
       }
     }
   }
