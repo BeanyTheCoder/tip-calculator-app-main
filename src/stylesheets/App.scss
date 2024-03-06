@@ -5,17 +5,22 @@
   margin: 0;
   padding: 0;
   font-family: "Space Mono" !important;
+  box-sizing: border-box;
   font-weight: 700;
 }
 
 #app {
-  @include flex($flex-direction: column, $gap: unset);
+  @include flex($flex-direction: column, $gap: 8vmin);
   background-color: $light-grayish-cyan;
-  height: 100vh;
+  min-height: 100vh;
   font-size: 1.5vmin;
 
   @media screen and (width < 800px) {
     font-size: 1rem;
+  }
+
+  @media screen and (width < 500px) {
+    justify-content: flex-end;
   }
 }
 

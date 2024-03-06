@@ -18,6 +18,7 @@ export default function PeopleInput({
           name="numOfPeople"
           placeholder="0"
           ref={inputRef}
+          value={numOfPeople}
           onChange={handlePeopleChange}
         />
         <svg xmlns="http://www.w3.org/2000/svg" width="13" height="16">

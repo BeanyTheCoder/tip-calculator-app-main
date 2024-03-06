@@ -1,22 +1,21 @@
 .card {
   @include flex($align-items: stretch, $gap: 2em);
   background-color: $white;
-  padding: 2em;
+  padding: 2.25em;
   border-radius: 2em;
-  width: clamp(17.5em, 80vw, 55em);
-  // width: clamp(280px, 60vw, 900px);
+  width: min(90vw, 57.5em);
 
   &__calculator {
     flex-basis: 50%;
-    padding: 0.75em;
+    padding: 1.25em;
 
     .--input {
       @include flex(
         $flex-direction: row-reverse,
         $justify-content: space-between
       );
-      border-radius: 0.5em;
-      padding: 0.5em 1em;
+      border-radius: 0.25em;
+      padding: 0.25em 0.75em;
       background-color: $very-light-grayish-cyan;
       border: 2px solid $very-light-grayish-cyan;
       transition: 200ms;
@@ -56,7 +55,7 @@
     }
 
     &__bill {
-      margin-bottom: 2.75em;
+      margin-bottom: 2.5em;
     }
 
     &__select {
@@ -68,7 +67,6 @@
       &__container {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(2, 1fr);
         gap: 1em;
         color: $white;
 
@@ -80,6 +78,7 @@
           background-color: $very-dark-cyan;
           color: $very-light-grayish-cyan;
           cursor: pointer;
+          transition: 200ms;
           min-width: calc(100% / 3);
 
           &:hover,
@@ -105,26 +104,29 @@
     }
 
     &__people {
-      margin-top: 2.75em;
+      margin-top: 2.5em;
     }
   }
 
   &__display {
-    padding: 2.5em;
-    border-radius: 1em;
-    background-color: $very-dark-cyan;
-    flex-basis: 50%;
-
     @include flex(
       $flex-direction: column,
       $justify-content: space-between,
       $align-items: stretch
     );
+    padding: 2.5em;
+    border-radius: 1em;
+    background-color: $very-dark-cyan;
+    flex-basis: 50%;
 
     &__container {
       &__item {
         @include flex($justify-content: space-between);
-        padding: 1em;
+        margin-bottom: 1.75em;
+
+        &:first-child {
+          margin-top: 0.75em;
+        }
 
         &__text {
           p {
@@ -165,8 +167,37 @@
   }
 
   @media screen and (width < 800px) {
-    width: clamp(300px, 100vw, 600px);
-    border-radius: 2em 2em 0 0;
+    width: clamp(300px, 100vw, 500px);
     flex-direction: column;
+    gap: 1.5em;
+    padding: 1.5em;
+
+    &__calculator {
+      padding: 0.5em;
+
+      &__select {
+        &__container {
+          grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        }
+      }
+    }
+
+    &__display {
+      padding: 1.5em;
+
+      &__container {
+        &__item {
+          &__number {
+            p {
+              font-size: 2em;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (width < 500px) {
+    border-radius: 2em 2em 0 0;
   }
 }

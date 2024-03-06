@@ -3,9 +3,9 @@ import React, { useRef } from "react";
 export default function BillInput({ state: bill, setState: setBill }) {
   let inputRef = useRef();
 
-  // function validator(value, regex) {
-  //   return regex.test(value) ? value : null;
-  // }
+  function validator(value, regex) {
+    return regex.test(value) ? value : null;
+  }
 
   function handleBillChange() {
     // const newValue = validator(
@@ -17,18 +17,23 @@ export default function BillInput({ state: bill, setState: setBill }) {
     //   return;
     // }
 
-    setBill(() => parseFloat(inputRef.current.value));
+    setBill(() =>
+      validator(inputRef.current.value, /^[0-9$€£¥]*(?:\.[0-9$€£¥]*)?$/)
+    );
   }
 
   return (
     <div className="card__calculator__bill">
-      <label htmlFor="bill" className="--label">Bill</label>
+      <label htmlFor="bill" className="--label">
+        Bill
+      </label>
       <div className="card__calculator__bill__input --input">
         <input
           type="text"
           name="bill"
           placeholder="0"
           ref={inputRef}
+          value={bill}
           onChange={handleBillChange}
         />
         <svg xmlns="http://www.w3.org/2000/svg" width="11" height="17">
@@ -38,7 +43,7 @@ export default function BillInput({ state: bill, setState: setBill }) {
           />
         </svg>
       </div>
-      {/* <p>{bill}</p> */}
+      <p>{bill}</p>
     </div>
   );
 }
