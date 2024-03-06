@@ -1,17 +1,18 @@
 import React from "react";
-import roundValue from "../helper-functions/roundValue";
 
 export default function TipDisplay({
   state: { bill, numOfPeople, tipSelection },
 }) {
   function computeTipPerPerson(bill, numOfPeople, tipSelection) {
     if (!bill || !numOfPeople || !tipSelection) {
-      return 0;
+      const tipPerPerson = 0;
+      return tipPerPerson.toFixed(2);
     }
 
-    let totalTip = bill * (tipSelection / 100);
-    let tipPerPerson = totalTip / numOfPeople;
-    return roundValue(tipPerPerson);
+    const totalTip = bill * (tipSelection / 100);
+    const tipPerPerson = totalTip / numOfPeople;
+
+    return tipPerPerson.toFixed(2);
   }
 
   return (
@@ -21,8 +22,7 @@ export default function TipDisplay({
         <span>/ person</span>
       </div>
       <div className="card__display__container__item__number">
-        {/* <p>{"$" + computeTipPerPerson(bill, numOfPeople, tipSelection)}</p> */}
-        <p>$0.00</p>
+        <p>{"$" + computeTipPerPerson(bill, numOfPeople, tipSelection)}</p>
       </div>
     </div>
   );

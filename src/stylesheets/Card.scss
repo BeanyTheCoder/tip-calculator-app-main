@@ -9,49 +9,70 @@
     flex-basis: 50%;
     padding: 1.25em;
 
-    .--input {
-      @include flex(
-        $flex-direction: row-reverse,
-        $justify-content: space-between
-      );
-      border-radius: 0.25em;
-      padding: 0.25em 0.75em;
-      background-color: $very-light-grayish-cyan;
-      border: 2px solid $very-light-grayish-cyan;
-      transition: 200ms;
-      cursor: pointer;
+    &__bill,
+    &__people {
+      &__labels {
+        @include flex($justify-content: space-between);
+        margin-bottom: 0.5em;
 
-      &:hover,
-      &:has(input:focus) {
-        border: 2px solid $strong-cyan-light;
+        .--label {
+          color: $dark-grayish-cyan;
+          display: inline-block;
+        }
+
+        .--error {
+          color: $invalid;
+          text-align: right;
+        }
       }
 
-      input {
-        -moz-appearance: textfield;
-        background-color: transparent;
+      .--input {
+        @include flex(
+          $flex-direction: row-reverse,
+          $justify-content: space-between
+        );
+        border-radius: 0.25em;
+        padding: 0.25em 0.75em;
+        background-color: $very-light-grayish-cyan;
+        border: 2px solid $very-light-grayish-cyan;
+        transition: 200ms;
         cursor: pointer;
-        text-align: right;
-        color: $very-dark-cyan;
 
-        &::placeholder {
-          color: $grayish-cyan;
+        &:hover,
+        &:has(input:focus) {
+          border: 2px solid $strong-cyan-light;
         }
 
-        &::-webkit-inner-spin-button,
-        &::-webkit-outer-spin-button {
-          -webkit-appearance: none;
-          margin: 0;
+        &.--invalid {
+          border: 2px solid $invalid !important;
+
+          input {
+            color: $invalid;
+          }
+        }
+
+        input {
+          -moz-appearance: textfield;
+          background-color: transparent;
+          cursor: pointer;
+          text-align: right;
+          color: $very-dark-cyan;
+
+          &::placeholder {
+            color: $grayish-cyan;
+          }
+
+          &::-webkit-inner-spin-button,
+          &::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+          }
+        }
+
+        svg {
+          z-index: 9999;
         }
       }
-
-      svg {
-      }
-    }
-
-    .--label {
-      color: $dark-grayish-cyan;
-      display: inline-block;
-      margin-bottom: 0.5em;
     }
 
     &__bill {

@@ -1,30 +1,78 @@
-import React from "react";
+import React, { useState } from "react";
 
-export default function BillInput({ 
-  state: bill,
-  setState: setBill 
-}) {
+export default function BillInput({ state: bill, setState: setBill }) {
+  const [errorMessage, setErrorMessage] = useState("");
+
   function handleBillChange(event) {
     const billInputValue = event.target.value;
-    const billRegex =
-      /^(?:\$|€|£)?(\d{0,4}(\.\d{0,2})?|\d{1,3}(,\d{3})*(\.\d{0,2})?)?$/;
+    // const billRegex = /^(\d{0,4}(\.\d{0,2})?|\d{1,3}(,\d{3})*(\.\d{0,2})?)?$/;
 
-    if (billInputValue.match(billRegex)) {
+    function validate(value) {
+      const valueStr = value.toString();
+      const [integerPart, decimalPart] = valueStr.split(".");
+
+      // to prevent zero from being entered
+      if (parseInt(value) === 0) {
+        setErrorMessage("Can't be zero");
+        return false;
+      }
+
+      // to prevent letters and other characters from being entered, including letters like e(eg: no bills such as $384d0.4c40e)
+      if (!/^[0-9. ]*$/.test(valueStr.toString())) {
+        setErrorMessage("Must be number");
+        return false;
+      }
+
+      // some short circuiting to prevent more than one decimal point being entered(eg: no bills such as $194.53.592.495)
+      if ((valueStr.toString().match(/\./g) || []).length > 1) {
+        setErrorMessage("Must be valid number");
+        return false;
+      }
+
+      // to prevent more than 2 digits after decimal point being entered(eg: no decimals such as $10.47598284)
+      if (decimalPart) {
+        if (decimalPart.length > 2) {
+          setErrorMessage("Must be valid price");
+          return false;
+        }
+      }
+
+      // to prevent more than 4 digits before decimal point being entered(eg: no bills larger than $9999)
+      if (integerPart.length > 4) {
+        setErrorMessage("Must be between 1-9999");
+        return false;
+      }
+
+      setErrorMessage("");
+      return true;
+    }
+
+    if (validate(parseFloat(billInputValue))) {
       setBill(billInputValue);
+    } else {
+      setBill(null);
     }
   }
 
   return (
     <div className="card__calculator__bill">
-      <label htmlFor="bill" className="--label">
-        Bill
-      </label>
-      <div className="card__calculator__bill__input --input">
+      <div className="card__calculator__bill__labels">
+        <label htmlFor="bill" className="--label">
+          Bill
+        </label>
+        <p className="--error">{errorMessage}</p>
+      </div>
+      <div
+        className={
+          bill !== null
+            ? "card__calculator__bill__input --input"
+            : "card__calculator__bill__input --input --invalid"
+        }
+      >
         <input
           type="text"
           name="bill"
           placeholder="0"
-          value={bill}
           onChange={handleBillChange}
         />
         <svg xmlns="http://www.w3.org/2000/svg" width="11" height="17">
@@ -34,7 +82,6 @@ export default function BillInput({
           />
         </svg>
       </div>
-      <p>{bill}</p>
     </div>
   );
 }

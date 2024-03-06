@@ -1,18 +1,19 @@
 import React from "react";
-import roundValue from "../helper-functions/roundValue";
 
 export default function TotalDisplay({
   state: { bill, numOfPeople, tipSelection },
 }) {
-  function computeTotalPerPerson(bill, numOfPeople, tipSelection) {
+  function computeTotalPayPerPerson(bill, numOfPeople, tipSelection) {
     if (!bill || !numOfPeople) {
-      return 0;
+      const totalPayPerPerson = 0;
+      return totalPayPerPerson.toFixed(2);
     }
 
     let totalTip = bill * (tipSelection / 100);
-    let totalPay = parseInt(bill) + parseInt(totalTip);
-    let totalPerPerson = totalPay / numOfPeople;
-    return roundValue(totalPerPerson);
+    let totalPay = parseFloat(bill) + totalTip;
+    let totalPayPerPerson = totalPay / numOfPeople;
+
+    return totalPayPerPerson.toFixed(2);
   }
 
   return (
@@ -22,8 +23,7 @@ export default function TotalDisplay({
         <span>/ person</span>
       </div>
       <div className="card__display__container__item__number">
-        {/* <p>{"$" + computeTotalPerPerson(bill, numOfPeople, tipSelection)}</p> */}
-        <p>$0.00</p>
+        <p>{"$" + computeTotalPayPerPerson(bill, numOfPeople, tipSelection)}</p>
       </div>
     </div>
   );

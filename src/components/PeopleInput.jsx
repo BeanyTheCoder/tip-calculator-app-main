@@ -1,29 +1,63 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function PeopleInput({
   state: numOfPeople,
   setState: setNumOfPeople,
 }) {
+  const [errorMessage, setErrorMessage] = useState("");
+
   function handlePeopleChange(event) {
     const peopleInputValue = event.target.value;
-    const peopleRegex = /^\d{0,2}$/;
 
-    if (peopleInputValue.match(peopleRegex)) {
+    function validate(value) {
+      // to prevent zero from being entered
+      if (parseInt(value) === 0) {
+        setErrorMessage("Can't be zero");
+        return false;
+      }
+
+      // to prevent letters and other characters from being entered, including letters like e, and decimal points(eg: no values such as 4r93e people)
+      if (!/^[0-9]*$/.test(value)) {
+        setErrorMessage("Must be number");
+        return false;
+      }
+
+      // to prevent more than 2 digits from being entered(eg: no values such as 294 people)
+      if (value.length > 2) {
+        setErrorMessage("Must be between 1-99");
+        return false;
+      }
+
+      setErrorMessage("");
+      return true;
+    }
+
+    if (validate(peopleInputValue)) {
       setNumOfPeople(peopleInputValue);
+    } else {
+      setNumOfPeople(null);
     }
   }
 
   return (
     <div className="card__calculator__people">
-      <label htmlFor="numOfPeople" className="--label">
-        Number Of People
-      </label>
-      <div className="card__calculator__people__input --input">
+      <div className="card__calculator__people__labels">
+        <label htmlFor="numOfPeople" className="--label">
+          Number Of People
+        </label>
+        <p className="--error">{errorMessage}</p>
+      </div>
+      <div
+        className={
+          numOfPeople !== null
+            ? "card__calculator__people__input --input"
+            : "card__calculator__people__input --input --invalid"
+        }
+      >
         <input
-          type="number"
+          type="text"
           name="numOfPeople"
           placeholder="0"
-          value={numOfPeople}
           onChange={handlePeopleChange}
         />
         <svg xmlns="http://www.w3.org/2000/svg" width="13" height="16">
@@ -33,7 +67,7 @@ export default function PeopleInput({
           />
         </svg>
       </div>
-      {/* <p>{numOfPeople}</p> */}
+      <p>{numOfPeople}</p>
     </div>
   );
 }

@@ -9,9 +9,9 @@ import TotalDisplay from "./components/TotalDisplay";
 import ResetButton from "./components/ResetButton";
 
 export default function App() {
-  const [bill, setBill] = useState();
-  const [numOfPeople, setNumOfPeople] = useState();
-  const [tipSelection, setTipSelection] = useState();
+  const [bill, setBill] = useState("");
+  const [numOfPeople, setNumOfPeople] = useState("");
+  const [tipSelection, setTipSelection] = useState("");
 
   return (
     <div id="app">
