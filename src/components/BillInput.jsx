@@ -1,25 +1,17 @@
-import React, { useRef } from "react";
+import React from "react";
 
-export default function BillInput({ state: bill, setState: setBill }) {
-  let inputRef = useRef();
+export default function BillInput({ 
+  state: bill,
+  setState: setBill 
+}) {
+  function handleBillChange(event) {
+    const billInputValue = event.target.value;
+    const billRegex =
+      /^(?:\$|€|£)?(\d{0,4}(\.\d{0,2})?|\d{1,3}(,\d{3})*(\.\d{0,2})?)?$/;
 
-  function validator(value, regex) {
-    return regex.test(value) ? value : null;
-  }
-
-  function handleBillChange() {
-    // const newValue = validator(
-    //   inputRef.current.value,
-    //   /^[0-9$€¥]*(?:\.[0-9$€¥]*)?$/
-    // );
-    //
-    // if (newValue == null) {
-    //   return;
-    // }
-
-    setBill(() =>
-      validator(inputRef.current.value, /^[0-9$€£¥]*(?:\.[0-9$€£¥]*)?$/)
-    );
+    if (billInputValue.match(billRegex)) {
+      setBill(billInputValue);
+    }
   }
 
   return (
@@ -32,7 +24,6 @@ export default function BillInput({ state: bill, setState: setBill }) {
           type="text"
           name="bill"
           placeholder="0"
-          ref={inputRef}
           value={bill}
           onChange={handleBillChange}
         />

@@ -1,23 +1,28 @@
-import React, { useRef } from "react";
+import React from "react";
 
 export default function PeopleInput({
   state: numOfPeople,
   setState: setNumOfPeople,
 }) {
-  let inputRef = useRef();
+  function handlePeopleChange(event) {
+    const peopleInputValue = event.target.value;
+    const peopleRegex = /^\d{0,2}$/;
 
-  function handlePeopleChange() {
-    setNumOfPeople(() => parseInt(inputRef.current.value));
+    if (peopleInputValue.match(peopleRegex)) {
+      setNumOfPeople(peopleInputValue);
+    }
   }
+
   return (
     <div className="card__calculator__people">
-      <label htmlFor="numOfPeople" className="--label">Number Of People</label>
+      <label htmlFor="numOfPeople" className="--label">
+        Number Of People
+      </label>
       <div className="card__calculator__people__input --input">
         <input
           type="number"
           name="numOfPeople"
           placeholder="0"
-          ref={inputRef}
           value={numOfPeople}
           onChange={handlePeopleChange}
         />
