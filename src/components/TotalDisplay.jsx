@@ -4,6 +4,10 @@ export default function TotalDisplay({
   state: { bill, numOfPeople, tipSelection },
 }) {
   function computeTotalPayPerPerson(bill, numOfPeople, tipSelection) {
+    if (bill === null || numOfPeople === null || tipSelection === null) {
+      return "__";
+    }
+
     if (!bill || !numOfPeople) {
       const totalPayPerPerson = 0;
       return totalPayPerPerson.toFixed(2);

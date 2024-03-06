@@ -40,7 +40,7 @@
 
         &:hover,
         &:has(input:focus) {
-          border: 2px solid $strong-cyan-light;
+          border: 2px solid $light-cyan;
         }
 
         &.--invalid {
@@ -99,12 +99,15 @@
           background-color: $very-dark-cyan;
           color: $very-light-grayish-cyan;
           cursor: pointer;
-          transition: 200ms;
+          transition: background-color 200ms;
           min-width: calc(100% / 3);
 
-          &:hover,
-          &:focus {
-            background-color: $strong-cyan-light;
+          &:hover {
+            background-color: $light-cyan;
+          }
+
+          &:focus:not(.--active, :active) {
+            outline: 2px solid $strong-cyan;
           }
 
           &.--active {
@@ -169,19 +172,21 @@
     }
 
     &__reset {
-      background-color: $strong-cyan-transparent;
-      color: $very-dark-cyan-transparent;
+      background-color: $strong-cyan;
+      color: $very-dark-cyan;
       padding: 0.5em 0.75em;
       text-transform: uppercase;
       font-size: 1.25em;
       border-radius: 0.25em;
 
-      &.--active {
-        background-color: $strong-cyan;
-        color: $very-dark-cyan;
+      &:disabled {
+        background-color: $strong-cyan-transparent;
+        color: $very-dark-cyan-transparent;
+      }
 
+      &.--active {
         &:hover {
-          background-color: $strong-cyan-light;
+          background-color: $light-cyan;
         }
       }
     }

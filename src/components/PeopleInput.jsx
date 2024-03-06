@@ -7,23 +7,25 @@ export default function PeopleInput({
   const [errorMessage, setErrorMessage] = useState("");
 
   function handlePeopleChange(event) {
-    const peopleInputValue = event.target.value;
+    const peopleInputValue = parseInt(event.target.value);
 
     function validate(value) {
+      const valueStr = value.toString();
+
       // to prevent zero from being entered
-      if (parseInt(value) === 0) {
+      if (parseInt(valueStr) === 0) {
         setErrorMessage("Can't be zero");
         return false;
       }
 
       // to prevent letters and other characters from being entered, including letters like e, and decimal points(eg: no values such as 4r93e people)
-      if (!/^[0-9]*$/.test(value)) {
+      if (!/^[0-9]*$/.test(valueStr)) {
         setErrorMessage("Must be number");
         return false;
       }
 
       // to prevent more than 2 digits from being entered(eg: no values such as 294 people)
-      if (value.length > 2) {
+      if (valueStr.length > 2) {
         setErrorMessage("Must be between 1-99");
         return false;
       }
@@ -67,7 +69,7 @@ export default function PeopleInput({
           />
         </svg>
       </div>
-      <p>{numOfPeople}</p>
+      <p>{numOfPeople ? numOfPeople : "0"}</p>
     </div>
   );
 }

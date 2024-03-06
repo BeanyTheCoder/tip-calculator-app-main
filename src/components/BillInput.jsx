@@ -4,7 +4,7 @@ export default function BillInput({ state: bill, setState: setBill }) {
   const [errorMessage, setErrorMessage] = useState("");
 
   function handleBillChange(event) {
-    const billInputValue = event.target.value;
+    const billInputValue = parseFloat(event.target.value);
     // const billRegex = /^(\d{0,4}(\.\d{0,2})?|\d{1,3}(,\d{3})*(\.\d{0,2})?)?$/;
 
     function validate(value) {
@@ -47,7 +47,7 @@ export default function BillInput({ state: bill, setState: setBill }) {
       return true;
     }
 
-    if (validate(parseFloat(billInputValue))) {
+    if (validate(billInputValue)) {
       setBill(billInputValue);
     } else {
       setBill(null);
@@ -82,6 +82,7 @@ export default function BillInput({ state: bill, setState: setBill }) {
           />
         </svg>
       </div>
+      <p>{bill ? bill : "0"}</p>
     </div>
   );
 }

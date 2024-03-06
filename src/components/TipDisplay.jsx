@@ -4,6 +4,10 @@ export default function TipDisplay({
   state: { bill, numOfPeople, tipSelection },
 }) {
   function computeTipPerPerson(bill, numOfPeople, tipSelection) {
+    if (bill === null || numOfPeople === null || tipSelection === null) {
+      return "__";
+    }
+
     if (!bill || !numOfPeople || !tipSelection) {
       const tipPerPerson = 0;
       return tipPerPerson.toFixed(2);
