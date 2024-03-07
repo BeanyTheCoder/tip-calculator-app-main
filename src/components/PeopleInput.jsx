@@ -7,25 +7,25 @@ export default function PeopleInput({
   const [errorMessage, setErrorMessage] = useState("");
 
   function handlePeopleChange(event) {
-    const peopleInputValue = parseInt(event.target.value);
+    const peopleInputValue = event.target.value;
 
     function validate(value) {
-      const valueStr = value.toString();
+      const parsedValue = parseInt(value);
 
       // to prevent zero from being entered
-      if (parseInt(valueStr) === 0) {
+      if (parsedValue === 0) {
         setErrorMessage("Can't be zero");
         return false;
       }
 
       // to prevent letters and other characters from being entered, including letters like e, and decimal points(eg: no values such as 4r93e people)
-      if (!/^[0-9]*$/.test(valueStr)) {
-        setErrorMessage("Must be number");
+      if (!/^\d+(\.0+)?$/.test(value)) {
+        setErrorMessage("Must be valid number");
         return false;
       }
 
       // to prevent more than 2 digits from being entered(eg: no values such as 294 people)
-      if (valueStr.length > 2) {
+      if (parsedValue < 1 || parsedValue > 99) {
         setErrorMessage("Must be between 1-99");
         return false;
       }
@@ -34,11 +34,9 @@ export default function PeopleInput({
       return true;
     }
 
-    if (validate(peopleInputValue)) {
-      setNumOfPeople(peopleInputValue);
-    } else {
-      setNumOfPeople(null);
-    }
+    validate(peopleInputValue)
+      ? setNumOfPeople(peopleInputValue)
+      : setNumOfPeople(null);
   }
 
   return (
@@ -50,11 +48,9 @@ export default function PeopleInput({
         <p className="--error">{errorMessage}</p>
       </div>
       <div
-        className={
-          numOfPeople !== null
-            ? "card__calculator__people__input --input"
-            : "card__calculator__people__input --input --invalid"
-        }
+        className={`card__calculator__people__input --input ${
+          numOfPeople ?? `--invalid`
+        }`}
       >
         <input
           type="text"
@@ -69,7 +65,6 @@ export default function PeopleInput({
           />
         </svg>
       </div>
-      <p>{numOfPeople ? numOfPeople : "0"}</p>
     </div>
   );
 }

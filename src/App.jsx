@@ -11,7 +11,7 @@ import ResetButton from "./components/ResetButton";
 export default function App() {
   const [bill, setBill] = useState("");
   const [numOfPeople, setNumOfPeople] = useState("");
-  const [tipSelection, setTipSelection] = useState("");
+  const [tipSelection, setTipSelection] = useState("0");
 
   return (
     <div id="app">

@@ -4,40 +4,38 @@ export default function BillInput({ state: bill, setState: setBill }) {
   const [errorMessage, setErrorMessage] = useState("");
 
   function handleBillChange(event) {
-    const billInputValue = parseFloat(event.target.value);
+    const billInputValue = event.target.value;
     // const billRegex = /^(\d{0,4}(\.\d{0,2})?|\d{1,3}(,\d{3})*(\.\d{0,2})?)?$/;
 
     function validate(value) {
-      const valueStr = value.toString();
-      const [integerPart, decimalPart] = valueStr.split(".");
+      const parsedValue = parseFloat(value);
+      const [integerPart, decimalPart] = parsedValue.toString().split(".");
 
       // to prevent zero from being entered
-      if (parseInt(value) === 0) {
+      if (parsedValue === 0) {
         setErrorMessage("Can't be zero");
         return false;
       }
 
       // to prevent letters and other characters from being entered, including letters like e(eg: no bills such as $384d0.4c40e)
-      if (!/^[0-9. ]*$/.test(valueStr.toString())) {
-        setErrorMessage("Must be number");
+      if (!/^\d+(\.\d*)?$/.test(value)) {
+        setErrorMessage("Must be valid number");
         return false;
       }
 
       // some short circuiting to prevent more than one decimal point being entered(eg: no bills such as $194.53.592.495)
-      if ((valueStr.toString().match(/\./g) || []).length > 1) {
+      if ((value.match(/\./g) || []).length > 1) {
         setErrorMessage("Must be valid number");
         return false;
       }
 
       // to prevent more than 2 digits after decimal point being entered(eg: no decimals such as $10.47598284)
-      if (decimalPart) {
-        if (decimalPart.length > 2) {
-          setErrorMessage("Must be valid price");
-          return false;
-        }
+      if (decimalPart && decimalPart.length > 2) {
+        setErrorMessage("Must be valid price");
+        return false;
       }
 
-      // to prevent more than 4 digits before decimal point being entered(eg: no bills larger than $9999)
+      // to prevent more than 4 digits before decimal point being entered(eg: no bills such as $4802940103)
       if (integerPart.length > 4) {
         setErrorMessage("Must be between 1-9999");
         return false;
@@ -47,11 +45,7 @@ export default function BillInput({ state: bill, setState: setBill }) {
       return true;
     }
 
-    if (validate(billInputValue)) {
-      setBill(billInputValue);
-    } else {
-      setBill(null);
-    }
+    validate(billInputValue) ? setBill(billInputValue) : setBill(null);
   }
 
   return (
@@ -63,11 +57,9 @@ export default function BillInput({ state: bill, setState: setBill }) {
         <p className="--error">{errorMessage}</p>
       </div>
       <div
-        className={
-          bill !== null
-            ? "card__calculator__bill__input --input"
-            : "card__calculator__bill__input --input --invalid"
-        }
+        className={`card__calculator__bill__input --input ${
+          bill ?? `--invalid`
+        }`}
       >
         <input
           type="text"
@@ -82,7 +74,6 @@ export default function BillInput({ state: bill, setState: setBill }) {
           />
         </svg>
       </div>
-      <p>{bill ? bill : "0"}</p>
     </div>
   );
 }

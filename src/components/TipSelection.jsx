@@ -39,7 +39,6 @@ export default function TipSelection({
           <span>Custom</span>
         </div>
       </div>
-      {/* <p>{tipSelection}</p> */}
     </div>
   );
 }

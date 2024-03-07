@@ -4,7 +4,7 @@ export default function TipDisplay({
   state: { bill, numOfPeople, tipSelection },
 }) {
   function computeTipPerPerson(bill, numOfPeople, tipSelection) {
-    if (bill === null || numOfPeople === null || tipSelection === null) {
+    if ([bill, numOfPeople, tipSelection].includes(null)) {
       return "__";
     }
 
