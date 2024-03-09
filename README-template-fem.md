@@ -1,10 +1,10 @@
-# Frontend Mentor - (Challenge name)
+# Frontend Mentor - Tip Calculator App 💵
 
 ![preview](./design/desktop-preview.jpg)
 
 ## Welcome 👋
 
-This is a solution to the [(Challenge name) challenge on Frontend Mentor](link). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
+This is a solution to the [Tip Calculator App challenge on Frontend Mentor](). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
 ## Table of contents 📑
 
@@ -27,11 +27,13 @@ This is a solution to the [(Challenge name) challenge on Frontend Mentor](link).
 
 Users should be able to:
 
-- ✅ Lorem ipsum dolor sit amet consectetur adipisicing elit.
+✅ View the optimal layout for the app depending on their device's screen size
+✅ See hover states for all interactive elements on the page
+✅ Calculate the correct tip and total cost of the bill per person
 
-- ✅ Lorem ipsum dolor sit amet consectetur adipisicing elit.
-- ✅ Lorem ipsum dolor sit amet consectetur adipisicing elit.
-- ✅ Lorem ipsum dolor sit amet consectetur adipisicing elit.
+Additionally, your app must include:
+
+✅ Proper validation for input fields
 
 ### Screenshots 📷
 
@@ -61,11 +63,14 @@ _Success (Mobile):_
 
 ### Built with 🛠️
 
-- Lorem, ipsum dolor.
-- Lorem, ipsum dolor.
-- Lorem, ipsum dolor.
+- React
+- SCSS
 
 ### What I learned 🧠
+
+### Regular expressions 📜
+
+In order to create effective validation, i implemented *regular expressions*, commonly abbreviated as *regex*
 
 ```html
 <h1>Some HTML code I'm proud of</h1>
@@ -105,7 +110,6 @@ Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nihil illum unde nulla
 - Github - [BeanyTheCoder](https://github.com/BeanyTheCoder)
 - Frontend Mentor - [@BeanyTheCoder](https://www.frontendmentor.io/profile/BeanyTheCoder)
 - Discord - beanythecoder
-
 
 ## Author 👤
 
