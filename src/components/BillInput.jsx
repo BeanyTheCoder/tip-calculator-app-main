@@ -11,15 +11,15 @@ export default function BillInput({ state: bill, setState: setBill }) {
       const parsedValue = parseFloat(value);
       const [integerPart, decimalPart] = parsedValue.toString().split(".");
 
-      // to prevent zero from being entered
-      if (parsedValue === 0) {
-        setErrorMessage("Can't be zero");
-        return false;
-      }
-
       // to prevent letters and other characters from being entered, including letters like e(eg: no bills such as $384d0.4c40e)
       if (!/^\d+(\.\d*)?$/.test(value)) {
         setErrorMessage("Must be valid number");
+        return false;
+      }
+
+      // to prevent zero from being entered
+      if (parsedValue === 0) {
+        setErrorMessage("Can't be zero");
         return false;
       }
 
@@ -65,6 +65,7 @@ export default function BillInput({ state: bill, setState: setBill }) {
           type="text"
           name="bill"
           placeholder="0"
+          value={bill}
           onChange={handleBillChange}
         />
         <svg xmlns="http://www.w3.org/2000/svg" width="11" height="17">

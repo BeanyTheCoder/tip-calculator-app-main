@@ -12,15 +12,15 @@ export default function PeopleInput({
     function validate(value) {
       const parsedValue = parseInt(value);
 
-      // to prevent zero from being entered
-      if (parsedValue === 0) {
-        setErrorMessage("Can't be zero");
-        return false;
-      }
-
       // to prevent letters and other characters from being entered, including letters like e, and decimal points(eg: no values such as 4r93e people)
       if (!/^\d+(\.0+)?$/.test(value)) {
         setErrorMessage("Must be valid number");
+        return false;
+      }
+
+      // to prevent zero from being entered
+      if (parsedValue === 0) {
+        setErrorMessage("Can't be zero");
         return false;
       }
 
@@ -56,6 +56,7 @@ export default function PeopleInput({
           type="text"
           name="numOfPeople"
           placeholder="0"
+          value={numOfPeople}
           onChange={handlePeopleChange}
         />
         <svg xmlns="http://www.w3.org/2000/svg" width="13" height="16">

@@ -47,7 +47,18 @@ export default function App() {
               }}
             />
           </div>
-          <ResetButton />
+          <ResetButton
+            state={{
+              bill: bill,
+              numOfPeople: numOfPeople,
+              tipSelection: tipSelection,
+            }}
+            setState={{
+              setBill: setBill,
+              setNumOfPeople: setNumOfPeople,
+              setTipSelection: setTipSelection,
+            }}
+          />
         </section>
       </div>
     </div>

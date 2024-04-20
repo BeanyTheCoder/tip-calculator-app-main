@@ -4,6 +4,7 @@
   padding: 2.25em;
   border-radius: 2em;
   width: min(90vw, 57.5em);
+  box-shadow: 0 0 3em $shadow;
 
   &__calculator {
     flex-basis: 50%;
@@ -104,10 +105,11 @@
 
           &:hover {
             background-color: $light-cyan;
+            color: $very-dark-cyan;
           }
 
           &:focus:not(.--active, :active) {
-            outline: 2px solid $strong-cyan;
+            outline: 3px solid $strong-cyan;
           }
 
           &.--active {
@@ -178,16 +180,17 @@
       text-transform: uppercase;
       font-size: 1.25em;
       border-radius: 0.25em;
+      transition: background-color 200ms;
+      cursor: pointer;
+
+      &:hover,
+      &:focus {
+        background-color: $light-cyan;
+      }
 
       &:disabled {
         background-color: $strong-cyan-transparent;
         color: $very-dark-cyan-transparent;
-      }
-
-      &.--active {
-        &:hover {
-          background-color: $light-cyan;
-        }
       }
     }
   }
@@ -196,6 +199,7 @@
     width: clamp(300px, 100vw, 500px);
     flex-direction: column;
     gap: 1.5em;
+    box-shadow: none;
     padding: 1.5em;
 
     &__calculator {
