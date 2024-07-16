@@ -27,8 +27,8 @@ This is a solution to the [Tip Calculator App challenge on Frontend Mentor](). F
 
 Users should be able to:
 
-✅ View the optimal layout for the app depending on their device's screen size
-✅ See hover states for all interactive elements on the page
+✅ View the optimal layout for the app depending on their device's screen size  
+✅ See hover states for all interactive elements on the page  
 ✅ Calculate the correct tip and total cost of the bill per person
 
 Additionally, your app must include:

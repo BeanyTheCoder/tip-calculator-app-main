@@ -26,3 +26,21 @@ $invalid: hsl(12, 75%, 58%);
   align-items: $align-items;
   gap: $gap;
 }
+
+@mixin input {
+  -moz-appearance: textfield;
+  background-color: transparent;
+  cursor: pointer;
+  text-align: right;
+  color: $very-dark-cyan;
+
+  &::placeholder {
+    color: $grayish-cyan;
+  }
+
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}

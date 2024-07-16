@@ -45,7 +45,7 @@
         }
 
         &.--invalid {
-          border: 2px solid $invalid !important;
+          outline: 2px solid $invalid !important;
 
           input {
             color: $invalid;
@@ -53,21 +53,7 @@
         }
 
         input {
-          -moz-appearance: textfield;
-          background-color: transparent;
-          cursor: pointer;
-          text-align: right;
-          color: $very-dark-cyan;
-
-          &::placeholder {
-            color: $grayish-cyan;
-          }
-
-          &::-webkit-inner-spin-button,
-          &::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-          }
+          @include input;
         }
 
         svg {
@@ -94,7 +80,7 @@
 
         &__item {
           @include flex;
-          padding: 0.25em 1em;
+          padding: 0.25em 0.5em;
           border-radius: 0.25em;
           font-size: 1.5em;
           background-color: $very-dark-cyan;
@@ -121,8 +107,22 @@
             background-color: $very-light-grayish-cyan;
             color: $dark-grayish-cyan;
 
+            &.--invalid {
+              outline: 2px solid $invalid !important;
+
+              input {
+                color: $invalid;
+              }
+            }
+
             input {
-              background: transparent;
+              @include input;
+              width: 100%;
+              font-size: inherit;
+
+              &::placeholder {
+                text-align: center;
+              }
             }
           }
         }

@@ -1,5 +1,6 @@
 import React from "react";
 import TipSelectionButton from "./TipSelectionButton";
+import TipSelectionInput from "./TipSelectionInput";
 
 export default function TipSelection({
   state: tipSelection,
@@ -34,10 +35,7 @@ export default function TipSelection({
           state={tipSelection}
           setState={setTipSelection}
         />
-        <div className="card__calculator__select__container__item">
-          {/* <input type="text" placeholder="Custom" /> */}
-          <span>Custom</span>
-        </div>
+        <TipSelectionInput state={tipSelection} setState={setTipSelection} />
       </div>
     </div>
   );
